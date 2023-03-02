@@ -39,3 +39,36 @@
 ## Verificando as Portas do container
 
 	docker port <container_id>
+
+## Consultado imagens e History de imagens
+
+	docker images
+	docker history <imagem_id>
+
+## Fazendo Build de uma Imagem
+
+	docker build -t peterhabraga/app-node:1.0 .
+
+## Fazendo o push da imagem para o DockerHub
+
+	docker push peterhabraga/app-node:1.0
+
+## Persistindo dados com Bind Mount (flag -v)
+
+	docker run -it -v /home/pedro/volume_docker:/app ubuntu bash 
+
+## Persistindo dados com criação de Volume (Melhor pratica e recomendado pela documentação do Docker)
+
+	docker run –mount type=bind,source=/home/diretorio,target=/app nginx
+	docker run -it --mount type=bind,source=/home/pedro/volume_docker,target=/app ubuntu bash
+
+## Gerenciando Volumes 
+	
+	docker volume ls
+	docker volume create <nome_volume>  // O docker mapeia os volumes dentro de sua estrutura,
+										   usando o apontamento /var/lib/docker/volumes
+	docker run -it --mount source=meu-novo-volume,target=/app ubuntu bash   // Cria automaticamente 
+																			   o volume e faz a associação
+
+## Persistindo dados com TMPFS
+
