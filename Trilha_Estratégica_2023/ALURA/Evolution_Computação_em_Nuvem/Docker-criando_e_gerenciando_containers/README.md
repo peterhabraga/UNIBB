@@ -72,3 +72,22 @@
 
 ## Persistindo dados com TMPFS
 
+## Verificando detalhes do container
+
+	docker inspect <container-id>
+
+## Verificando detalhes da rede
+
+	docker network ls
+	docker network create --driver bridge minha-bridge         //criando uma nova rede do tipo  
+	                                                             bridge chamada minha-bridge
+
+	## Exemplo do uso de 2 containers em rede
+		docker pull mongo:4.4.6
+		docker pull aluradocker/alura-books:1.0
+		docker run -d --network minha-bridge --name meu-mongo mongo:4.4.6
+		docker run -d --network minha-bridge --name alurabooks -p 3000:3000 aluradocker/alura-books:1.0
+
+## Transformando os comandos acima em um docker-compose, cria o arquivo docker-compose.yml e faz o start
+
+	docker-compose up -d
